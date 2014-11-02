@@ -11,7 +11,7 @@ namespace TagManagerLib
      * */
     public class SyntaxTree
     {
-        public static List<ITag> _tags;
+        public static List<AbstractTag> _tags;
 
         private static int _indexProcess;
         private static string _source;
@@ -24,7 +24,7 @@ namespace TagManagerLib
 
         public SyntaxTree(string source)
         {
-            _tags = new List<ITag>();
+            _tags = new List<AbstractTag>();
             _indexProcess = 0;
             _source = source;
 
@@ -40,12 +40,12 @@ namespace TagManagerLib
             _root.process();
         }
 
-        public static ITag getNextChildTag(ITag parentTag)
+        public static AbstractTag getNextChildTag(AbstractTag parentTag)
         {
-            ITag result = null;
+            AbstractTag result = null;
             int indexMin =_source.Length;
 
-            foreach (ITag tag in _tags) {
+            foreach (AbstractTag tag in _tags) {
 
                 int index;
                 if (parentTag == null)
@@ -97,9 +97,9 @@ namespace TagManagerLib
         }
 
         private List<Node> _children;
-        public ITag _tag;
+        public AbstractTag _tag;
 
-        public Node(ITag tag)
+        public Node(AbstractTag tag)
         {
             _tag = tag;
             _children = new List<Node>();
@@ -108,7 +108,7 @@ namespace TagManagerLib
         
         public virtual void process() {
             int startIndex = SyntaxTree.IndexProcess;
-            ITag tagChild = null;
+            AbstractTag tagChild = null;
 
             //Add children
             while (SyntaxTree.IndexProcess < SyntaxTree.Source.Length && ((tagChild = SyntaxTree.getNextChildTag(Tag)) != null))
@@ -148,7 +148,7 @@ namespace TagManagerLib
                 }
             }
         }
-        public ITag Tag { get{return _tag;} }
+        public AbstractTag Tag { get{return _tag;} }
         public List<Node> Children {get { return _children;}}
     }
 
@@ -171,7 +171,7 @@ namespace TagManagerLib
 
     public class NodeTag : Node
     {       
-        public NodeTag(ITag tag) : base(tag)
+        public NodeTag(AbstractTag tag) : base(tag)
         {
         }
 

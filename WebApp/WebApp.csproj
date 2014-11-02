@@ -57,6 +57,7 @@
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery-textrange.js" />
     <Content Include="Scripts\JScript.js" />
+    <Content Include="Style\bootstrap.min.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

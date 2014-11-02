@@ -16,7 +16,7 @@ namespace TagManagerLib
      * Custom tags
      * 
      * */
-    public abstract class ITag
+    public abstract class AbstractTag
     {
         public abstract string OpenTag { get; }
         public abstract string CloseTag { get; }
@@ -28,9 +28,9 @@ namespace TagManagerLib
 
         public override sealed bool Equals(object obj)
         {
-            if (obj is ITag)
+            if (obj is AbstractTag)
             {
-                ITag tag = (ITag)obj;
+                AbstractTag tag = (AbstractTag)obj;
                 return tag.OpenTag.Equals(OpenTag) && tag.CloseTag.Equals(CloseTag);
             }
             else
@@ -40,7 +40,7 @@ namespace TagManagerLib
         }
     }
 
-    public sealed class TagNoProcess : ITag
+    public sealed class TagNoProcess : AbstractTag
     {
         public static readonly TagNoProcess Instance = new TagNoProcess();
         override
@@ -50,7 +50,7 @@ namespace TagManagerLib
         public string CloseTag { get { return "}#"; } }
     }
 
-    public sealed class TagBold : ITag
+    public sealed class TagBold : AbstractTag
     {
         override
         public string OpenTag { get { return "B{"; } }
