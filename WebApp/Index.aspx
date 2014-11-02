@@ -12,15 +12,15 @@
 <div style="margin : 20px">
         <form id="MainForm" runat="server" >
 			<div>
-           		<asp:Button ID="Bold_Btn" runat="server" Text="Bold" />
-            	<asp:Button ID="Italic_Btn" runat="server" Text="Italic" />
+           		<asp:Button ID="Bold_Btn" runat="server" Text="Bold" type="button" class="btn btn-default" />
+            	<asp:Button ID="Italic_Btn" runat="server" Text="Italic" type="button" class="btn btn-default" />
 			</div>
             <div style="display:inline-block; width:40%; padding:10px">
-            <asp:TextBox Id="SourceCode_TextBox" TextMode="multiline" Columns="80" Rows="20" runat="server" CssClass="form-control" />
+                <asp:TextBox Id="SourceCode_TextBox" TextMode="multiline" Columns="80" Rows="20" runat="server" CssClass="form-control" />
             </div>
             <div style="display:inline-block; width:50%; vertical-align:top; padding:10px">
-                <asp:Button Id="Render_Button" Text="Render" Width="98px" OnClick="RenderTextSource" runat="server" type="button" class="btn btn-default" />
-                <asp:Button ID="ExportHTML_btn" runat="server" Text="Export HTML" />
+                <asp:Button Id="Render_Button" Text="Render" OnClick="RenderTextSource" runat="server" type="button" class="btn btn-default" />
+                <asp:Button ID="ExportHTML_btn" runat="server" Text="Export HTML" type="button" class="btn btn-default" />
 				<div runat="server" Id="RenderingResult_Div"></div>  
             </div
 

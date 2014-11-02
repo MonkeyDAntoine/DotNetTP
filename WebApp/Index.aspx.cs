@@ -32,14 +32,14 @@ namespace WebApp
         [System.Web.Services.WebMethod]
         public static string BoldText(string text)
         {
-            ITag tag = new TagBold();
+            AbstractTag tag = new TagBold();
             return tag.OpenTag + text + tag.CloseTag;
         }
 
         [System.Web.Services.WebMethod]
         public static string ItalicText(string text)
         {
-            ITag tag = new TagItalic();
+            AbstractTag tag = new TagItalic();
             return tag.OpenTag + text + tag.CloseTag;
         }
 

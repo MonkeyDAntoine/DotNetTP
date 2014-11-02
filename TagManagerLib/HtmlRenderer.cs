@@ -8,11 +8,11 @@ namespace TagManagerLib
 {
     public class HtmlRenderer : Renderer
     {
-        private Dictionary<ITag, AbstractHtmlTag> _htmlTags;
+        private Dictionary<AbstractTag, AbstractHtmlTag> _htmlTags;
 
         public HtmlRenderer()
         {
-            _htmlTags = new Dictionary<ITag, AbstractHtmlTag>();
+            _htmlTags = new Dictionary<AbstractTag, AbstractHtmlTag>();
             _htmlTags.Add(new TagBold(), new BoldHtmlTag());
             _htmlTags.Add(new TagItalic(), new ItalicHtmlTag());
         }
@@ -87,13 +87,13 @@ namespace TagManagerLib
 
     public abstract class AbstractHtmlTag 
     {
-        private ITag _tag;
-        public AbstractHtmlTag(ITag tag)
+        private AbstractTag _tag;
+        public AbstractHtmlTag(AbstractTag tag)
         {
             _tag = tag;
         }
 
-        public ITag Tag { get { return _tag; } }
+        public AbstractTag Tag { get { return _tag; } }
         public abstract string OpenHtmlTag { get; }
         public abstract string CloseHtmlTag { get; }
 

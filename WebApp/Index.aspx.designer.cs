@@ -59,15 +59,6 @@ namespace WebApp {
         protected global::System.Web.UI.WebControls.Button Render_Button;
         
         /// <summary>
-        /// RenderingResult_Div control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RenderingResult_Div;
-        
-        /// <summary>
         /// ExportHTML_btn control.
         /// </summary>
         /// <remarks>
@@ -75,6 +66,15 @@ namespace WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ExportHTML_btn;
+        
+        /// <summary>
+        /// RenderingResult_Div control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RenderingResult_Div;
         
         /// <summary>
         /// scriptManager control.
