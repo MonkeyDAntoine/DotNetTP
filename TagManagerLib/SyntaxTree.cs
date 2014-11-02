@@ -30,7 +30,7 @@ namespace TagManagerLib
 
             _tags.Add(new TagBold());
             _tags.Add(new TagNoProcess());
-
+            _tags.Add(new TagItalic());
 
             _root = new NodeRoot();
         }

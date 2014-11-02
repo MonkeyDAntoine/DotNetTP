@@ -23,6 +23,24 @@ namespace WebApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
         
         /// <summary>
+        /// Bold_Btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Bold_Btn;
+        
+        /// <summary>
+        /// Italic_Btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Italic_Btn;
+        
+        /// <summary>
         /// SourceCode_TextBox control.
         /// </summary>
         /// <remarks>
@@ -48,6 +66,15 @@ namespace WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl RenderingResult_Div;
+        
+        /// <summary>
+        /// ExportHTML_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ExportHTML_btn;
         
         /// <summary>
         /// scriptManager control.

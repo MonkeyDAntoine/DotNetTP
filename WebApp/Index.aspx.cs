@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.IO;
 using TagManagerLib;
 
 namespace WebApp
@@ -18,7 +19,7 @@ namespace WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ExportHTML_btn.Click += ExportHTML;
         }
 
         public void RenderTextSource(Object sender, EventArgs e)
@@ -28,5 +29,38 @@ namespace WebApp
             RenderingResult_Div.InnerHtml = "<pre>"+syntaxTree.ToString()+"</pre>";
         }
 
+        [System.Web.Services.WebMethod]
+        public static string BoldText(string text)
+        {
+            ITag tag = new TagBold();
+            return tag.OpenTag + text + tag.CloseTag;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string ItalicText(string text)
+        {
+            ITag tag = new TagItalic();
+            return tag.OpenTag + text + tag.CloseTag;
+        }
+
+        public void ExportHTML(object sender, EventArgs e)
+        {
+            SyntaxTree syntaxTree = new SyntaxTree(SourceCode_TextBox.Text);
+            syntaxTree.process();
+            HtmlRenderer renderer = new HtmlRenderer();
+
+            string path = Path.GetTempPath() + "/render.html";
+            TextWriter tw = new StreamWriter(path);
+            // write a line of text to the file
+            tw.WriteLine(renderer.Render(syntaxTree));
+            // close the stream
+            tw.Close();
+
+            string name = Path.GetFileName(path);
+            Response.AppendHeader("content-disposition", "attachment; filename=" + name);
+            Response.ContentType = "text/html";
+            Response.WriteFile(path);
+            Response.End();
+        }
     }
 }

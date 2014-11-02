@@ -59,4 +59,12 @@ namespace TagManagerLib
         public string CloseTag { get { return "}"; } }
     }
 
+    public sealed class TagItalic : ITag
+    {
+        override
+        public string OpenTag { get { return "I{"; } }
+
+        override
+        public string CloseTag { get { return "}"; } }
+    }
 }
