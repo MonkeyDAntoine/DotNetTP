@@ -25,7 +25,7 @@ namespace WebApp
         {
             SyntaxTree syntaxTree = new SyntaxTree(SourceCode_TextBox.Text);
             syntaxTree.process();
-            RenderingResult_Div.InnerHtml = "<p>"+HttpUtility.HtmlEncode(syntaxTree.ToString())+"</p>";
+            RenderingResult_Div.InnerHtml = "<pre>"+syntaxTree.ToString()+"</pre>";
         }
 
     }
