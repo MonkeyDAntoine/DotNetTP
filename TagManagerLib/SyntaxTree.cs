@@ -31,6 +31,7 @@ namespace TagManagerLib
             _tags.Add(new TagBold());
             _tags.Add(new TagNoProcess());
 
+
             _root = new NodeRoot();
         }
 
@@ -68,34 +69,32 @@ namespace TagManagerLib
 
         public override string ToString()
         {
-            result = "";
-            tab = 0;
-            displayNode(_root);
-            return result;
-        }
-
-        private string result = "";
-        private int tab = 0;
-
-        private void displayNode(Node node)
-        {
-            tab++;
-            foreach (Node child in node.Children) {
-                for (int i = 0; i < tab-1; i++)
-                {
-                    result += "   ";
-                }
-                result += "'--";
-                result +=  child.ToString() + "\n";
-                displayNode(child);
-            }
-            tab--;
+            return _root.TextNode;
         }
     }
 
 
     public abstract class Node
     {
+        public abstract string TextNode { get; }
+        protected string result = "";
+        private int tab = 0;
+
+        protected void displayNode(Node node)
+        {
+            tab++;
+            foreach (Node child in node.Children)
+            {
+                for (int i = 0; i < tab - 1; i++)
+                {
+                    result += "   ";
+                }
+                result += "'--";
+                result += child.TextNode + "\n";
+                displayNode(child);
+            }
+            tab--;
+        }
 
         private List<Node> _children;
         public ITag _tag;
@@ -158,6 +157,16 @@ namespace TagManagerLib
         public NodeRoot() : base(null)
         {
         }
+
+        public override string TextNode
+        {
+            get
+            {
+                base.displayNode(this);
+                return "[ROOT]\n"+result; 
+            }
+        }
+
     }
 
     public class NodeTag : Node
@@ -173,6 +182,11 @@ namespace TagManagerLib
                 return Tag.ToString();
             }
             return base.ToString();
+        }
+
+        public override string TextNode
+        {
+            get { return ToString(); }
         }
     }
 
@@ -192,10 +206,14 @@ namespace TagManagerLib
 
         public string Text { get { return SyntaxTree.Source.Substring(this._fromIndex, this._toIndex - this._fromIndex+1); } }
 
-        override
-        public string ToString()
+        public override string  TextNode
         {
-            return "Text{"+this.Text+"}";
+            get { return "Text{" + this.Text + "}"; }
+        }
+
+        public override string ToString()
+        {
+            return Text;
         }
     }
 }
