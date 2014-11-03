@@ -15,6 +15,7 @@ namespace TagManagerLib
             _htmlTags = new Dictionary<AbstractTag, AbstractHtmlTag>();
             _htmlTags.Add(new TagBold(), new BoldHtmlTag());
             _htmlTags.Add(new TagItalic(), new ItalicHtmlTag());
+            _htmlTags.Add(new TagNoProcess(), NoProcessHtmlTag.Instance);
         }
         
         public string Render(SyntaxTree tree)
@@ -46,9 +47,9 @@ namespace TagManagerLib
                 result = tagHtml.OpenHtmlTag;
             }
 
-            if (new TagNoProcess().Equals(node.Tag))
+            if (NoProcessHtmlTag.Instance.Equals(tagHtml))
             {
-                result += renderNoPrecessNode(node);
+                result += renderNoProcessNode(node);
             }
             else
             {
@@ -67,18 +68,18 @@ namespace TagManagerLib
 
         }
 
-        private string renderNoPrecessNode(Node node)
+        private string renderNoProcessNode(Node node)
         {
             string result = "";
             foreach (Node child in node.Children)
             {
                 if (child.Tag != null)
                 {
-                    result += child.Tag.OpenTag + renderNoPrecessNode(child) + child.Tag.CloseTag;
+                    result += child.Tag.OpenTag + renderNoProcessNode(child) + child.Tag.CloseTag;
                 }
                 else
                 {
-                    result += child.ToString() + renderNoPrecessNode(child);
+                    result += child.ToString() + renderNoProcessNode(child);
                 }
             }
             return HttpUtility.HtmlEncode(result);
@@ -151,7 +152,7 @@ namespace TagManagerLib
 
     public class NoProcessHtmlTag : AbstractHtmlTag
     {
-
+        public static readonly NoProcessHtmlTag Instance = new NoProcessHtmlTag();
         public NoProcessHtmlTag()
             : base(new TagNoProcess())
         {
@@ -159,12 +160,12 @@ namespace TagManagerLib
 
         public override string CloseHtmlTag
         {
-            get { return "</pre>"; }
+            get { return "</a>"; }
         }
 
         public override string OpenHtmlTag
         {
-            get { return "<pre>"; }
+            get { return "<a>"; }
         }
     }
 
